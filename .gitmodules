@@ -1,0 +1,3 @@
+[submodule "src/counter-strike"]
+	path = src/counter-strike
+	url = https://github.com/snglenote/counter-strike
