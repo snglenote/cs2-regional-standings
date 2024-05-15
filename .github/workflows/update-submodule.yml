@@ -1,0 +1,38 @@
+name: Update Submodule
+
+on:
+  schedule:
+    - cron: "0 * * * *" # Runs every hour
+  workflow_dispatch:
+
+jobs:
+  update-submodule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true # Make sure to checkout submodules
+          token: ${{ secrets.GITHUB_TOKEN }} # Use GitHub token for permissions
+
+      - name: Update submodule
+        run: |
+          cd src/counter-strike
+          git pull origin master
+          cd ../..
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::set-output name=changes::true"
+          fi
+
+      - name: Commit and push if changes
+        if: steps.git-check.outputs.changes == 'true'
+        run: |
+          git config user.name 'snglenote'
+          git config user.email 'cakoonyatse@gmail.com'
+          git add src/counter-strike
+          git commit -m "Update submodule"
+          git push
