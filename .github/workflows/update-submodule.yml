@@ -18,7 +18,7 @@ jobs:
       - name: Update submodule
         run: |
           cd src/counter-strike
-          git pull origin master
+          git pull origin main
           cd ../..
 
       - name: Check for changes
