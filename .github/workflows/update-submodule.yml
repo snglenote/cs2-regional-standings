@@ -15,6 +15,9 @@ jobs:
           submodules: true # Make sure to checkout submodules
           token: ${{ secrets.GITHUB_TOKEN }} # Use GitHub token for permissions
 
+      - name: Set git config for reconciliation
+        run: git config pull.rebase false # Use merge to reconcile divergent branches
+
       - name: Update submodule
         run: |
           cd src/counter-strike
