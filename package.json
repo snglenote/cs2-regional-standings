@@ -5,6 +5,11 @@
     "docs:preview": "vitepress preview"
   },
   "dependencies": {
+    "sass": "^1.77.1",
     "vitepress": "^1.1.4"
+  },
+  "devDependencies": {
+    "flexsearch": "^0.7.43",
+    "vitepress-plugin-search": "^1.0.4-alpha.22"
   }
 }
